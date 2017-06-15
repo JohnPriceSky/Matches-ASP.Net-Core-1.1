@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Matches.Infrastructure.Services;
+using Matches.Core.Repositories;
+using Matches.Infrastructure.Repositories;
 
 namespace Matches.Api
 {
@@ -28,6 +31,8 @@ namespace Matches.Api
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddScoped<IGamerRepository, InMemoryGamerRepository>();
+            services.AddScoped<IGamerService, GamerService>();
             services.AddMvc();
         }
 
